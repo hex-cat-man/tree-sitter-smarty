@@ -1,0 +1,39 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "smarty",
+      "camelcase": "Smarty",
+      "title": "Smarty",
+      "scope": "source.smarty",
+      "file-types": [
+        "tpl"
+      ],
+      "injection-regex": "^smarty$",
+      "class-name": "TreeSitterSmarty"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "Smarty grammar for tree-sitter",
+    "authors": [
+      {
+        "name": "hex-cat-man",
+        "email": "hex-cat-man@tutanota.com"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/hex-cat-man/tree-sitter-smarty"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true,
+    "zig": false
+  }
+}
