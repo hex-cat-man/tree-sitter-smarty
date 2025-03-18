@@ -1,10 +1,51 @@
-[ "{" "}" "{/" ] @punctuation.bracket
+["{" "}" "{/"] @punctuation.bracket
 
-[ "[" "]" "(" ")" ] @punctuation.bracket
+["[" "]" "(" ")"] @punctuation.bracket
 
-[ "," ] @punctuation.delimiter
+[","] @punctuation.delimiter
 
-[ "=" "=>" "->" "." ] @operator
+["=" "=>" "->" "."] @operator
+
+[
+  "+"
+  "-"
+  "*"
+  "/"
+  "=="
+  "!="
+  ">"
+  "<"
+  ">="
+  "<="
+  "==="
+  "%"
+  "??"
+  "?:"
+] @operator
+
+(ternary_expression ["?" ":"] @operator)
+
+[
+ "and"
+ "by"
+ "div"
+ "eq"
+ "even"
+ "ge"
+ "gt"
+ "gte"
+ "in"
+ "is"
+ "le"
+ "lt"
+ "lte"
+ "mod"
+ "ne"
+ "neq"
+ "not"
+ "odd"
+ "or"
+] @keyword
 
 (tag_function_name) @tag
 

@@ -115,7 +115,70 @@ module.exports = grammar({
     _expression: $ => choice(
       $._literal,
       $._access_expression,
+      $.unary_expression,
+      $.binary_expression,
+      $.ternary_expression,
     ),
+
+    unary_expression: $ => prec.left(1, choice(
+      seq(
+        choice('not', '!'),
+        $._expression,
+      ),
+      seq(
+        $._expression,
+        choice(
+          seq('is', optional('not'), 'even'),
+          seq('is', optional('not'), 'odd'),
+        ),
+      ),
+    )),
+
+    binary_expression: $ => prec.left(1, seq(
+      field('left', $._expression),
+      choice(
+        '+',
+        '-',
+        '*',
+        '/',
+        '==',
+        '!=',
+        '>',
+        '<',
+        '>=',
+        '<=',
+        '===',
+        '%',
+        '??',
+        '?:',
+
+        'and',
+        'or',
+        'eq',
+        'ne',
+        'neq',
+        'gt',
+        'lt',
+        'gte',
+        'ge',
+        'lte',
+        'le',
+        'mod',
+        seq('is', optional('not'), 'div', 'by'),
+        seq('is', optional('not'), 'even', 'by'),
+        seq('is', optional('not'), 'odd', 'by'),
+        seq('is', optional('not'), 'in'),
+      ),
+      field('right', $._expression),
+    )),
+
+    ternary_expression: $ => prec.left(1, seq(
+      field('condition', $._expression),
+      '?',
+      field('consequence', $._expression),
+      ':',
+      field('alternative', $._expression),
+    )),
 
     // Variables
 
