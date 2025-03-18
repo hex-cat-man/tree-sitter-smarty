@@ -61,3 +61,23 @@ Nested expressions
       consequence: (boolean)
       alternative: (boolean)))
   (text))
+
+================================================================================
+Parenthesized expressions
+================================================================================
+
+{(true or false) or (not false)}
+
+--------------------------------------------------------------------------------
+
+(template
+  (tag
+    (binary_expression
+      left: (parenthesized_expression
+        (binary_expression
+          left: (boolean)
+          right: (boolean)))
+      right: (parenthesized_expression
+        (unary_expression
+          (boolean)))))
+  (text))

@@ -18,6 +18,7 @@ module.exports = grammar({
   conflicts: $ => [
     [$.tag, $.start_tag],
     [$._access_expression, $.section_access_expression],
+    [$.member_access_expression, $.member_call_expression],
   ],
 
   extras: $ => [
@@ -118,7 +119,10 @@ module.exports = grammar({
       $.unary_expression,
       $.binary_expression,
       $.ternary_expression,
+      $.parenthesized_expression,
     ),
+
+    parenthesized_expression: $ => seq('(', $._expression, ')'),
 
     unary_expression: $ => prec.left(1, choice(
       seq(
@@ -213,7 +217,7 @@ module.exports = grammar({
       field('object', $._access_expression),
       '->',
       field('name', $.identifier),
-      field('arguments', alias($.parenthesised_arguments, $.arguments)),
+      field('arguments', alias($.parenthesized_arguments, $.arguments)),
     ),
     smarty_access_expression: $ => seq(
       field('array', $._access_expression),
@@ -231,7 +235,7 @@ module.exports = grammar({
       token.immediate('['), $._expression, ']',
     ),
 
-    parenthesised_arguments: $ => seq(
+    parenthesized_arguments: $ => seq(
       '(',
       optional(seq($.argument, repeat(seq(',', $.argument)))),
       ')',
