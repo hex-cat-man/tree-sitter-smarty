@@ -10,7 +10,9 @@
         "tpl"
       ],
       "injection-regex": "^smarty$",
-      "class-name": "TreeSitterSmarty"
+      "class-name": "TreeSitterSmarty",
+      "highlights": "queries/highlights.scm",
+      "injections": "queries/injections.scm"
     }
   ],
   "metadata": {
