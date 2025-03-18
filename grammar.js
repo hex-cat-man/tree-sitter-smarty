@@ -16,7 +16,7 @@ module.exports = grammar({
   name: "smarty",
 
   conflicts: $ => [
-    [$._smarty, $.block],
+    [$.tag, $.start_tag],
   ],
 
   extras: $ => [
@@ -57,32 +57,127 @@ module.exports = grammar({
 
     identifier: _ => REGEX_IDENTIFIER,
 
+    // https://smarty-php.github.io/smarty/stable/designers/language-basic-syntax/language-syntax-tags/
+
     tag: $ => seq(
       '{',
-      $.identifier,
+      choice(
+        $.tag_function,
+        $._expression,
+      ),
+      '}',
+    ),
+
+    start_tag: $ => seq(
+      '{',
+      $.tag_function,
       '}',
     ),
 
     end_tag: $ => seq(
       '{/',
-      $.identifier,
+      $.tag_function_name,
       '}',
     ),
 
     block: $ => seq(
-      $.tag,
+      $.start_tag,
       alias(repeat($._smarty), $.body),
       $.end_tag,
     ),
 
     // TODO: tag_function and tag_attributes.
-    //
-    // tag_function: $ => seq(
-    //   $.tag_function_name,
-    //   $.tag_attributes,
-    // ),
-    // tag_function_name: $ => alias($.identifier, 'tag_function_name'),
-    // tag_attributes: $ => repeat($.tag_attribute),
-    // tag_attribute: $ => choice(/* ... */),
+
+    tag_function: $ => seq(
+      $.tag_function_name,
+      alias(repeat($.tag_function_attribute), $.tag_function_attributes),
+    ),
+    tag_function_name: $ => alias($.identifier, 'tag_function_name'),
+
+    // https://smarty-php.github.io/smarty/stable/designers/language-basic-syntax/language-syntax-attributes/
+
+    tag_function_attribute: $ => choice(
+      // Option flag (equal to attr=true).
+      field('name', $.identifier),
+      // Some tag function allow omitting the attribute name.
+      field('value', $._expression),
+      seq(
+        field('name', $.identifier),
+        '=',
+        field('value', $._expression),
+      ),
+    ),
+
+    // Expressions
+
+    _expression: $ => choice(
+      $._literal,
+    ),
+
+    // Literals
+
+    _literal: $ => choice(
+      $.null,
+      $.boolean,
+      $.number,
+      $.string,
+      $.array,
+    ),
+
+    null: _ => 'null',
+
+    boolean: _ => choice('true', 'false'),
+
+    // Supported notations seem to be quite limited.
+    number: _ => choice(
+      /\d+/,
+      /\d+\.\d+/,
+      /\d+\./,
+      /\.\d+/,
+    ),
+
+    // TODO: String interpolation.
+    string: $ => choice(
+      seq(
+        '\'',
+        repeat(choice(
+          $.escape_sequence,
+          alias(
+            prec.right(repeat1(token.immediate(prec(1, /\\?[^'\\]+/)))),
+            $.string_content,
+          ),
+        )),
+        '\'',
+      ),
+      seq(
+        '"',
+        repeat(choice(
+          $.escape_sequence,
+          alias(
+            prec.right(repeat1(token.immediate(prec(1, /\\?[^"\\]+/)))),
+            $.string_content,
+          ),
+        )),
+        '"',
+      ),
+    ),
+    escape_sequence: _ => /\\./,
+
+    array: $ => seq(
+      '[',
+      optional(seq(
+        seq($.array_item, repeat(seq(',', $.array_item)), optional(',')),
+      )),
+      ']'
+    ),
+
+    array_item: $ => choice(
+      $._expression,
+      seq(
+        field('key', $._expression),
+        '=>',
+        field('value', $._expression),
+      ),
+    ),
   }
 });
