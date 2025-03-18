@@ -1,0 +1,139 @@
+================================================================================
+Variables
+================================================================================
+
+{$foo}
+{#bar#}
+
+--------------------------------------------------------------------------------
+
+(template
+  (tag
+    (variable
+      (identifier)))
+  (tag
+    (config_variable
+      (identifier)))
+  (text))
+
+================================================================================
+{foreach} variable properties
+================================================================================
+
+{$foo@iter}
+
+--------------------------------------------------------------------------------
+
+(template
+  (tag
+    (variable_property
+      (variable
+        (identifier))
+      property: (identifier)))
+  (text))
+
+================================================================================
+Variable assignment
+================================================================================
+
+{$foo = null}
+
+--------------------------------------------------------------------------------
+
+(template
+  (tag
+    (assignment_expression
+      left: (variable
+        (identifier))
+      right: (null)))
+  (text))
+
+================================================================================
+Variables access
+================================================================================
+
+{$foo.bar}
+{$foo.$baz}
+{$foo.$baz.bar}
+{$foo['expression']}
+{$foo->baz}
+{$foo.bar->baz['expresion']}
+{$foo[bar]->baz}
+
+--------------------------------------------------------------------------------
+
+(template
+  (tag
+    (smarty_access_expression
+      array: (variable
+        (identifier))
+      name: (identifier)))
+  (tag
+    (smarty_access_expression
+      array: (variable
+        (identifier))
+      name: (variable
+        (identifier))))
+  (tag
+    (smarty_access_expression
+      array: (smarty_access_expression
+        array: (variable
+          (identifier))
+        name: (variable
+          (identifier)))
+      name: (identifier)))
+  (tag
+    (array_access_expression
+      (variable
+        (identifier))
+      (string
+        (string_content))))
+  (tag
+    (member_access_expression
+      object: (variable
+        (identifier))
+      name: (identifier)))
+  (tag
+    (array_access_expression
+      (member_access_expression
+        object: (smarty_access_expression
+          array: (variable
+            (identifier))
+          name: (identifier))
+        name: (identifier))
+      (string
+        (string_content))))
+  (tag
+    (member_access_expression
+      object: (section_access_expression
+        array: (variable
+          (identifier))
+        name: (identifier))
+      name: (identifier)))
+  (text))
+
+================================================================================
+Method chaining
+================================================================================
+
+{$foo->bar(null, true, 1)->baz()}
+
+--------------------------------------------------------------------------------
+
+(template
+  (tag
+    (member_call_expression
+      object: (member_call_expression
+        object: (variable
+          (identifier))
+        name: (identifier)
+        arguments: (arguments
+          (argument
+            (null))
+          (argument
+            (boolean))
+          (argument
+            (number))))
+      name: (identifier)
+        arguments: (arguments)))
+  (text))

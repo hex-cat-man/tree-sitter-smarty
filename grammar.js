@@ -17,6 +17,7 @@ module.exports = grammar({
 
   conflicts: $ => [
     [$.tag, $.start_tag],
+    [$._access_expression, $.section_access_expression],
   ],
 
   extras: $ => [
@@ -64,6 +65,7 @@ module.exports = grammar({
       choice(
         $.tag_function,
         $._expression,
+        $.assignment_expression,
       ),
       '}',
     ),
@@ -112,7 +114,68 @@ module.exports = grammar({
 
     _expression: $ => choice(
       $._literal,
+      $._access_expression,
     ),
+
+    // Variables
+
+    assignment_expression: $ => seq(
+      field('left', $.variable),
+      '=',
+      field('right', $._expression),
+    ),
+
+    _access_expression: $ => choice(
+      $.variable,
+      $.config_variable,
+      $.variable_property,
+      $.member_access_expression,
+      // Note that only methods can be called, nothing else.
+      $.member_call_expression,
+      $.smarty_access_expression,
+      $.section_access_expression,
+      $.array_access_expression,
+    ),
+
+    variable: $ => seq('$', $.identifier),
+    config_variable: $ => seq('#', $.identifier, '#'),
+    variable_property: $ => seq($.variable, '@', field('property', $.identifier)),
+
+    member_access_expression: $ => seq(
+      field('object', $._access_expression),
+      '->',
+      field('name', choice($.variable, $.identifier)),
+    ),
+    member_call_expression: $ => seq(
+      field('object', $._access_expression),
+      '->',
+      field('name', $.identifier),
+      field('arguments', alias($.parenthesised_arguments, $.arguments)),
+    ),
+    smarty_access_expression: $ => seq(
+      field('array', $._access_expression),
+      '.',
+      field('name', choice($.variable, $.identifier)),
+    ),
+    section_access_expression: $ => seq(
+      field('array', $.variable),
+      token.immediate('['),
+      field('name', $.identifier),
+      ']',
+    ),
+    array_access_expression: $ => seq(
+      $._access_expression,
+      token.immediate('['), $._expression, ']',
+    ),
+
+    parenthesised_arguments: $ => seq(
+      '(',
+      optional(seq($.argument, repeat(seq(',', $.argument)))),
+      ')',
+    ),
+    // TODO: Modifier expressions
+    // modifier_arguments: $ => repeat1(seq(':', $.argument)),
+    argument: $ => $._expression,
 
     // Literals
 
