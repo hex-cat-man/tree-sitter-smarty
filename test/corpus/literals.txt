@@ -66,6 +66,45 @@ String
     (string_content)))
   (text))
 
+===============================================================================
+String (escaped characters)
+===============================================================================
+
+{'\\\''}
+{"\n\r\t\v\e\f\\\$\""}
+{"\101"}
+{"\x41"}
+{"\u{41}"}
+
+--------------------------------------------------------------------------------
+
+(template
+  (tag
+    (string
+      (escape_sequence)
+      (escape_sequence)))
+  (tag
+    (string
+      (escape_sequence)
+      (escape_sequence)
+      (escape_sequence)
+      (escape_sequence)
+      (escape_sequence)
+      (escape_sequence)
+      (escape_sequence)
+      (escape_sequence)
+      (escape_sequence)))
+  (tag
+    (string
+      (escape_sequence)))
+  (tag
+    (string
+      (escape_sequence)))
+  (tag
+    (string
+      (escape_sequence)))
+  (text))
+
 ================================================================================
 Array
 ================================================================================

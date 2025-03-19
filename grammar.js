@@ -12,6 +12,9 @@
 // https://www.php.net/manual/en/language.variables.basics.php
 const REGEX_IDENTIFIER = /[a-zA-Z_\x80-\xff][a-zA-Z0-9_\x80-\xff]*/;
 
+// https://www.php.net/manual/en/language.types.string.php#language.types.string.syntax.double
+const REGEX_ESC = /\\([nrtvef\\$"]|[0-7]{1,3}|x[0-9A-Fa-f]{1,2}|u\{[0-9A-Fa-f]+\})/;
+
 module.exports = grammar({
   name: "smarty",
 
@@ -303,9 +306,9 @@ module.exports = grammar({
       seq(
         '\'',
         repeat(choice(
-          $.escape_sequence,
+          alias(/\\[\\']/, $.escape_sequence),
           alias(
-            prec.right(repeat1(token.immediate(prec(1, /\\?[^'\\]+/)))),
+            prec.right(repeat1(token.immediate(prec(1, /[^'\\]+/)))),
             $.string_content,
           ),
         )),
@@ -314,16 +317,15 @@ module.exports = grammar({
       seq(
         '"',
         repeat(choice(
-          $.escape_sequence,
+          alias(REGEX_ESC, $.escape_sequence),
           alias(
-            prec.right(repeat1(token.immediate(prec(1, /\\?[^"\\]+/)))),
+            prec.right(repeat1(token.immediate(prec(1, /[^"\\]+/)))),
             $.string_content,
           ),
         )),
         '"',
       ),
     ),
-    escape_sequence: _ => /\\./,
 
     array: $ => seq(
       '[',
