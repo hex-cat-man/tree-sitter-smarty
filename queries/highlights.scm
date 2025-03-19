@@ -2,11 +2,15 @@
 
 ["[" "]" "(" ")"] @punctuation.bracket
 
-[","] @punctuation.delimiter
-
-["=" "=>" "->" "."] @operator
+["," ":"] @punctuation.delimiter
 
 [
+  "="
+  "=>"
+  "->"
+  "."
+  "|"
+
   "+"
   "-"
   "*"
@@ -81,6 +85,11 @@
       (identifier) @variable.builtin ( #eq? @variable.builtin "smarty"))
     name: (identifier) @property (#eq? @property "const"))
   name: (identifier) @constant)
+
+(modifier_call_expression
+  name: (identifier) @function)
+(function_call_expression
+  name: (identifier) @function)
 
 (null) @type.builtin
 (boolean) @boolean

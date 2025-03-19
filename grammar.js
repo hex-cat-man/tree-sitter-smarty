@@ -7,7 +7,7 @@
 /// <reference types="tree-sitter-cli/dsl" />
 // @ts-check
 
-// This is just my assumtion what a valid smarty identifier might look like.
+// This is just my assumption what a valid smarty identifier might look like.
 //
 // https://www.php.net/manual/en/language.variables.basics.php
 const REGEX_IDENTIFIER = /[a-zA-Z_\x80-\xff][a-zA-Z0-9_\x80-\xff]*/;
@@ -17,8 +17,9 @@ module.exports = grammar({
 
   conflicts: $ => [
     [$.tag, $.start_tag],
+    // TODO: Understand prec and get rid of those conflicts (if possible).
     [$._access_expression, $.section_access_expression],
-    [$.member_access_expression, $.member_call_expression],
+    [$.modifier_call_expression, $.argument],
   ],
 
   extras: $ => [
@@ -95,7 +96,7 @@ module.exports = grammar({
       $.tag_function_name,
       alias(repeat($.tag_function_attribute), $.tag_function_attributes),
     ),
-    tag_function_name: $ => alias($.identifier, 'tag_function_name'),
+    tag_function_name: $ => prec.right(alias($.identifier, 'tag_function_name')),
 
     // https://smarty-php.github.io/smarty/stable/designers/language-basic-syntax/language-syntax-attributes/
 
@@ -113,7 +114,7 @@ module.exports = grammar({
 
     // Expressions
 
-    _expression: $ => choice(
+    _expression: $ => prec.right(choice(
       $._literal,
       // Simple tags can be used in tags/expressions.
       $.tag,
@@ -122,7 +123,10 @@ module.exports = grammar({
       $.binary_expression,
       $.ternary_expression,
       $.parenthesized_expression,
-    ),
+
+      prec.right($.modifier_call_expression),
+      $.function_call_expression,
+    )),
 
     parenthesized_expression: $ => seq('(', $._expression, ')'),
 
@@ -186,6 +190,28 @@ module.exports = grammar({
       field('alternative', $._expression),
     )),
 
+    // Modifier called in a modifier pipeline.
+    // TODO: {tag_function|json_encode attr='foo' flag}
+    modifier_call_expression: $ => prec.right(seq(
+      field('input', $._expression),
+      '|',
+      field('name', $.identifier),
+      field('arguments', optional(alias($.modifier_arguments, $.arguments))),
+    )),
+    // Modifier called as a function.
+    function_call_expression: $ => prec(1, seq(
+      field('name', $.identifier),
+      field('arguments', alias($.parenthesized_arguments, $.arguments)),
+    )),
+
+    parenthesized_arguments: $ => seq(
+      '(',
+      optional(seq($.argument, repeat(seq(',', $.argument)))),
+      ')',
+    ),
+    modifier_arguments: $ => prec.right(repeat1(seq(':', $.argument))),
+    argument: $ => $._expression,
+
     // Variables
 
     assignment_expression: $ => seq(
@@ -210,41 +236,35 @@ module.exports = grammar({
     config_variable: $ => seq('#', $.identifier, '#'),
     variable_property: $ => seq($.variable, '@', field('property', $.identifier)),
 
-    member_access_expression: $ => seq(
+    member_access_expression: $ => prec.right(1, seq(
       field('object', $._access_expression),
       '->',
       field('name', choice($.variable, $.identifier)),
-    ),
-    member_call_expression: $ => seq(
+    )),
+    member_call_expression: $ => prec.right(1, seq(
       field('object', $._access_expression),
       '->',
       field('name', $.identifier),
       field('arguments', alias($.parenthesized_arguments, $.arguments)),
-    ),
-    smarty_access_expression: $ => seq(
+    )),
+    smarty_access_expression: $ => prec(1, seq(
       field('array', $._access_expression),
       '.',
       field('name', choice($.variable, $.identifier)),
-    ),
+    )),
     section_access_expression: $ => seq(
       field('array', $.variable),
       token.immediate('['),
       field('name', $.identifier),
       ']',
     ),
-    array_access_expression: $ => seq(
+    // TODO: add subscript fields.
+    array_access_expression: $ => prec(1, seq(
       $._access_expression,
-      token.immediate('['), $._expression, ']',
-    ),
-
-    parenthesized_arguments: $ => seq(
-      '(',
-      optional(seq($.argument, repeat(seq(',', $.argument)))),
-      ')',
-    ),
-    // TODO: Modifier expressions
-    // modifier_arguments: $ => repeat1(seq(':', $.argument)),
-    argument: $ => $._expression,
+      token.immediate('['),
+      $._expression,
+      ']',
+    )),
 
     // Literals
 

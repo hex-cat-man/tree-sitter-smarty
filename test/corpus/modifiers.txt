@@ -1,0 +1,87 @@
+================================================================================
+Modifier call
+================================================================================
+
+{[]|join}
+{[]|join:','}
+{[]|join:','|upper}
+
+--------------------------------------------------------------------------------
+
+(template
+  (tag
+    (modifier_call_expression
+      input: (array)
+      name: (identifier)))
+  (tag
+    (modifier_call_expression
+      input: (array)
+      name: (identifier)
+      arguments: (arguments
+        (argument
+          (string
+            (string_content))))))
+  (tag
+    (modifier_call_expression
+      input: (modifier_call_expression
+        input: (array)
+        name: (identifier)
+        arguments: (arguments
+          (argument
+            (string
+              (string_content)))))
+      name: (identifier)))
+  (text))
+
+================================================================================
+Function call
+================================================================================
+
+{join([], ',')}
+{not foo()}
+{include lower('PARTIAL.TPL')}
+
+--------------------------------------------------------------------------------
+
+(template
+  (tag
+    (function_call_expression
+      name: (identifier)
+      arguments: (arguments
+        (argument
+          (array))
+        (argument
+          (string
+            (string_content))))))
+  (tag
+    (unary_expression
+      (function_call_expression
+        name: (identifier)
+        arguments: (arguments))))
+  (tag
+    (tag_function
+      (tag_function_name)
+      (tag_function_attributes
+        (tag_function_attribute
+          value: (function_call_expression
+            name: (identifier)
+            arguments: (arguments
+              (argument
+                (string
+                  (string_content)))))))))
+  (text))
+
+================================================================================
+Modified tag function
+:skip
+================================================================================
+
+{foo|bar:'baz' attr='bar' flag}
+
+--------------------------------------------------------------------------------
+
+(template
+  (tag
+    (modified_tag_function
+      (tag_function)))
+  (text))
