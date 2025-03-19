@@ -81,3 +81,25 @@ Parenthesized expressions
         (unary_expression
           (boolean)))))
   (text))
+
+================================================================================
+Tag expressions
+================================================================================
+
+{{counter}}
+{{counter} eq 1}
+
+--------------------------------------------------------------------------------
+
+(template
+  (tag
+    (tag
+      (tag_function
+        (tag_function_name))))
+  (tag
+    (binary_expression
+      left: (tag
+        (tag_function
+          (tag_function_name)))
+      right: (number)))
+  (text))

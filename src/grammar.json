@@ -277,6 +277,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "tag"
+        },
+        {
+          "type": "SYMBOL",
           "name": "_access_expression"
         },
         {

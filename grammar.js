@@ -89,7 +89,7 @@ module.exports = grammar({
       $.end_tag,
     ),
 
-    // TODO: tag_function and tag_attributes.
+    // Tag functions
 
     tag_function: $ => seq(
       $.tag_function_name,
@@ -115,6 +115,8 @@ module.exports = grammar({
 
     _expression: $ => choice(
       $._literal,
+      // Simple tags can be used in tags/expressions.
+      $.tag,
       $._access_expression,
       $.unary_expression,
       $.binary_expression,

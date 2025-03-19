@@ -60,6 +60,10 @@
           "named": true
         },
         {
+          "type": "tag",
+          "named": true
+        },
+        {
           "type": "ternary_expression",
           "named": true
         },
@@ -169,6 +173,10 @@
           "named": true
         },
         {
+          "type": "tag",
+          "named": true
+        },
+        {
           "type": "ternary_expression",
           "named": true
         },
@@ -248,6 +256,10 @@
             "named": true
           },
           {
+            "type": "tag",
+            "named": true
+          },
+          {
             "type": "ternary_expression",
             "named": true
           },
@@ -319,6 +331,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "tag",
             "named": true
           },
           {
@@ -394,6 +410,10 @@
         },
         {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "tag",
           "named": true
         },
         {
@@ -486,6 +506,10 @@
             "named": true
           },
           {
+            "type": "tag",
+            "named": true
+          },
+          {
             "type": "ternary_expression",
             "named": true
           },
@@ -566,6 +590,10 @@
             "named": true
           },
           {
+            "type": "tag",
+            "named": true
+          },
+          {
             "type": "ternary_expression",
             "named": true
           },
@@ -637,6 +665,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "tag",
             "named": true
           },
           {
@@ -933,6 +965,10 @@
           "named": true
         },
         {
+          "type": "tag",
+          "named": true
+        },
+        {
           "type": "ternary_expression",
           "named": true
         },
@@ -1139,6 +1175,10 @@
           "named": true
         },
         {
+          "type": "tag",
+          "named": true
+        },
+        {
           "type": "tag_function",
           "named": true
         },
@@ -1248,6 +1288,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "tag",
             "named": true
           },
           {
@@ -1375,6 +1419,10 @@
             "named": true
           },
           {
+            "type": "tag",
+            "named": true
+          },
+          {
             "type": "ternary_expression",
             "named": true
           },
@@ -1449,6 +1497,10 @@
             "named": true
           },
           {
+            "type": "tag",
+            "named": true
+          },
+          {
             "type": "ternary_expression",
             "named": true
           },
@@ -1520,6 +1572,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "tag",
             "named": true
           },
           {
@@ -1605,6 +1661,10 @@
         },
         {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "tag",
           "named": true
         },
         {
