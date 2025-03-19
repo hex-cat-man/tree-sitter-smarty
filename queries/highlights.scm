@@ -35,6 +35,12 @@
   "?:"
 ] @operator
 
+[
+  "if"
+  "else"
+  "elseif"
+] @keyword
+
 (ternary_expression ["?" ":"] @operator)
 
 [

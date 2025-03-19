@@ -61,3 +61,54 @@ Comments
   (comment)
   (comment)
   (text))
+
+================================================================================
+{if},{elseif},{else}
+================================================================================
+
+{if true}
+    {if true}
+        body
+    {/if}
+{else if true}
+    {if true}
+        body
+    {/if}
+{else}
+    {if true}
+        body
+    {/if}
+{/if}
+
+--------------------------------------------------------------------------------
+
+(template
+  (if_block
+    (if_start_tag
+      condition: (boolean))
+    (body
+      (if_block
+        (if_start_tag
+          condition: (boolean))
+        (body
+          (text))
+        (if_end_tag)))
+      (elseif_tag
+        condition: (boolean))
+    (body
+      (if_block
+        (if_start_tag
+          condition: (boolean))
+        (body
+          (text))
+        (if_end_tag)))
+    (else_tag)
+    (body
+      (if_block
+        (if_start_tag
+          condition: (boolean))
+        (body
+          (text))
+        (if_end_tag)))
+    (if_end_tag))
+  (text))

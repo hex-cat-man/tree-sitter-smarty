@@ -20,6 +20,7 @@ module.exports = grammar({
 
   conflicts: $ => [
     [$.tag, $.start_tag],
+    [$._elseif_branch],
     // TODO: Understand prec and get rid of those conflicts (if possible).
     [$._access_expression, $.section_access_expression],
     [$.modifier_call_expression, $.argument],
@@ -35,6 +36,7 @@ module.exports = grammar({
     _smarty: $ => choice(
       $.tag,
       $.block,
+      $._builtin_block,
       $.text,
     ),
 
@@ -114,6 +116,40 @@ module.exports = grammar({
         field('value', $._expression),
       ),
     ),
+
+    // Builtin blocks
+    //
+    // Some of the builtin blocks have special syntax we need to handle
+    // separately.
+
+    _builtin_block: $ => choice(
+      $.if_block,
+    ),
+
+    if_block: $ => seq(
+      $.if_start_tag,
+      alias(repeat($._smarty), $.body),
+      repeat($._elseif_branch),
+      optional($._else_branch),
+      $.if_end_tag,
+    ),
+    if_start_tag: $ => seq('{', 'if', field('condition', $._expression), '}'),
+    if_end_tag: _ => seq('{/', 'if', '}'),
+    _elseif_branch: $ => seq(
+      $.elseif_tag,
+      alias(repeat($._smarty), $.body),
+    ),
+    elseif_tag: $ => seq(
+      '{',
+      choice('elseif', seq('else', 'if')),
+      field('condition', $._expression),
+      '}',
+    ),
+    _else_branch: $ => seq(
+      $.else_tag,
+      alias(repeat($._smarty), $.body),
+    ),
+    else_tag: _ => seq('{', 'else', '}'),
 
     // Expressions
 
