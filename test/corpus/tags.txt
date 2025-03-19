@@ -112,3 +112,49 @@ Comments
         (if_end_tag)))
     (if_end_tag))
   (text))
+
+================================================================================
+{for},{forelse}
+================================================================================
+
+{for $i = 1 to 10}
+    {for $j = $start to $end 2 max=2}
+        body
+    {forelse}
+        body
+    {/for}
+{/for}
+
+--------------------------------------------------------------------------------
+
+(template
+  (for_block
+    (for_start_tag
+      start: (assignment_expression
+        left: (variable
+          (identifier))
+        right: (number))
+      end: (number))
+    (body
+      (for_block
+        (for_start_tag
+          start: (assignment_expression
+            left: (variable
+              (identifier))
+            right: (variable
+              (identifier)))
+          end: (variable
+            (identifier))
+          step: (number)
+          (tag_function_attributes
+            (tag_function_attribute
+              name: (identifier)
+              value: (number))))
+        (body
+          (text))
+        (forelse_tag)
+        (body
+          (text))
+        (for_end_tag)))
+    (for_end_tag))
+  (text))

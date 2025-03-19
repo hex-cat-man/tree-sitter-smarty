@@ -791,6 +791,10 @@
           "named": true
         },
         {
+          "type": "for_block",
+          "named": true
+        },
+        {
           "type": "if_block",
           "named": true
         },
@@ -941,6 +945,241 @@
         }
       ]
     }
+  },
+  {
+    "type": "for_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "body",
+          "named": true
+        },
+        {
+          "type": "for_end_tag",
+          "named": true
+        },
+        {
+          "type": "for_start_tag",
+          "named": true
+        },
+        {
+          "type": "forelse_tag",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "for_end_tag",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "for_start_tag",
+    "named": true,
+    "fields": {
+      "end": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "array",
+            "named": true
+          },
+          {
+            "type": "array_access_expression",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "config_variable",
+            "named": true
+          },
+          {
+            "type": "function_call_expression",
+            "named": true
+          },
+          {
+            "type": "member_access_expression",
+            "named": true
+          },
+          {
+            "type": "member_call_expression",
+            "named": true
+          },
+          {
+            "type": "modifier_call_expression",
+            "named": true
+          },
+          {
+            "type": "null",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "section_access_expression",
+            "named": true
+          },
+          {
+            "type": "smarty_access_expression",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "tag",
+            "named": true
+          },
+          {
+            "type": "ternary_expression",
+            "named": true
+          },
+          {
+            "type": "unary_expression",
+            "named": true
+          },
+          {
+            "type": "variable",
+            "named": true
+          },
+          {
+            "type": "variable_property",
+            "named": true
+          }
+        ]
+      },
+      "start": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "assignment_expression",
+            "named": true
+          }
+        ]
+      },
+      "step": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "array",
+            "named": true
+          },
+          {
+            "type": "array_access_expression",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "config_variable",
+            "named": true
+          },
+          {
+            "type": "function_call_expression",
+            "named": true
+          },
+          {
+            "type": "member_access_expression",
+            "named": true
+          },
+          {
+            "type": "member_call_expression",
+            "named": true
+          },
+          {
+            "type": "modifier_call_expression",
+            "named": true
+          },
+          {
+            "type": "null",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "section_access_expression",
+            "named": true
+          },
+          {
+            "type": "smarty_access_expression",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "tag",
+            "named": true
+          },
+          {
+            "type": "ternary_expression",
+            "named": true
+          },
+          {
+            "type": "unary_expression",
+            "named": true
+          },
+          {
+            "type": "variable",
+            "named": true
+          },
+          {
+            "type": "variable_property",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "tag_function_attributes",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "forelse_tag",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "function_call_expression",
@@ -1803,6 +2042,10 @@
           "named": true
         },
         {
+          "type": "for_block",
+          "named": true
+        },
+        {
           "type": "if_block",
           "named": true
         },
@@ -2403,6 +2646,14 @@
     "named": false
   },
   {
+    "type": "for",
+    "named": false
+  },
+  {
+    "type": "forelse",
+    "named": false
+  },
+  {
     "type": "ge",
     "named": false
   },
@@ -2472,6 +2723,10 @@
   },
   {
     "type": "tag_function_name",
+    "named": false
+  },
+  {
+    "type": "to",
     "named": false
   },
   {

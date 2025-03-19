@@ -124,6 +124,7 @@ module.exports = grammar({
 
     _builtin_block: $ => choice(
       $.if_block,
+      $.for_block,
     ),
 
     if_block: $ => seq(
@@ -150,6 +151,29 @@ module.exports = grammar({
       alias(repeat($._smarty), $.body),
     ),
     else_tag: _ => seq('{', 'else', '}'),
+
+    for_block: $ => seq(
+      $.for_start_tag,
+      alias(repeat($._smarty), $.body),
+      optional($._forelse_branch),
+      $.for_end_tag,
+    ),
+    for_start_tag: $ => prec(1, seq(
+      '{',
+      'for',
+      field('start', $.assignment_expression),
+      'to',
+      field('end', $._expression),
+      optional(field('step', $._expression)),
+      alias(repeat($.tag_function_attribute), $.tag_function_attributes),
+      '}',
+    )),
+    for_end_tag: _ => seq('{/', 'for', '}'),
+    _forelse_branch: $ => seq(
+      $.forelse_tag,
+      alias(repeat($._smarty), $.body),
+    ),
+    forelse_tag: _ => seq('{', 'forelse', '}'),
 
     // Expressions
 

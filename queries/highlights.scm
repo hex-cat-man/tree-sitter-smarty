@@ -39,6 +39,9 @@
   "if"
   "else"
   "elseif"
+  "for"
+  "to"
+  "forelse"
 ] @keyword
 
 (ternary_expression ["?" ":"] @operator)
