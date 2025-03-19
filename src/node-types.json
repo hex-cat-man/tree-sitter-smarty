@@ -795,6 +795,10 @@
           "named": true
         },
         {
+          "type": "foreach_block",
+          "named": true
+        },
+        {
           "type": "if_block",
           "named": true
         },
@@ -1175,6 +1179,175 @@
         }
       ]
     }
+  },
+  {
+    "type": "foreach_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "body",
+          "named": true
+        },
+        {
+          "type": "foreach_end_tag",
+          "named": true
+        },
+        {
+          "type": "foreach_start_tag",
+          "named": true
+        },
+        {
+          "type": "foreachelse_tag",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "foreach_end_tag",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "foreach_start_tag",
+    "named": true,
+    "fields": {
+      "from": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "variable",
+            "named": true
+          }
+        ]
+      },
+      "item": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "variable",
+            "named": true
+          }
+        ]
+      },
+      "key": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "variable",
+            "named": true
+          }
+        ]
+      },
+      "step": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "array",
+            "named": true
+          },
+          {
+            "type": "array_access_expression",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "config_variable",
+            "named": true
+          },
+          {
+            "type": "function_call_expression",
+            "named": true
+          },
+          {
+            "type": "member_access_expression",
+            "named": true
+          },
+          {
+            "type": "member_call_expression",
+            "named": true
+          },
+          {
+            "type": "modifier_call_expression",
+            "named": true
+          },
+          {
+            "type": "null",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "section_access_expression",
+            "named": true
+          },
+          {
+            "type": "smarty_access_expression",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "tag",
+            "named": true
+          },
+          {
+            "type": "ternary_expression",
+            "named": true
+          },
+          {
+            "type": "unary_expression",
+            "named": true
+          },
+          {
+            "type": "variable",
+            "named": true
+          },
+          {
+            "type": "variable_property",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "tag_function_attributes",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "foreachelse_tag",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "forelse_tag",
@@ -2046,6 +2219,10 @@
           "named": true
         },
         {
+          "type": "foreach_block",
+          "named": true
+        },
+        {
           "type": "if_block",
           "named": true
         },
@@ -2614,6 +2791,10 @@
     "named": false
   },
   {
+    "type": "as",
+    "named": false
+  },
+  {
     "type": "by",
     "named": false
   },
@@ -2647,6 +2828,14 @@
   },
   {
     "type": "for",
+    "named": false
+  },
+  {
+    "type": "foreach",
+    "named": false
+  },
+  {
+    "type": "foreachelse",
     "named": false
   },
   {

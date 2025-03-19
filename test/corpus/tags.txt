@@ -158,3 +158,64 @@ Comments
         (for_end_tag)))
     (for_end_tag))
   (text))
+
+================================================================================
+{foreach},{foreachelse}
+================================================================================
+
+{foreach $list as $key => $item}
+    {foreach from=$list key='key' item='item'}
+        body
+    {foreachelse}
+        body
+    {/foreach}
+{/foreach}
+
+{foreach $list as $key}
+    body
+{/foreach}
+
+--------------------------------------------------------------------------------
+
+(template
+  (foreach_block
+    (foreach_start_tag
+      from: (variable
+        (identifier))
+      key: (variable
+        (identifier))
+      item: (variable
+        (identifier)))
+    (body
+      (foreach_block
+        (foreach_start_tag
+          (tag_function_attributes
+            (tag_function_attribute
+              name: (identifier)
+              value: (variable
+                (identifier)))
+            (tag_function_attribute
+              name: (identifier)
+              value: (string
+                (string_content)))
+            (tag_function_attribute
+              name: (identifier)
+              value: (string
+                (string_content)))))
+        (body
+          (text))
+        (foreachelse_tag)
+        (body
+          (text))
+        (foreach_end_tag)))
+    (foreach_end_tag))
+  (foreach_block
+    (foreach_start_tag
+      from: (variable
+        (identifier))
+      item: (variable
+        (identifier)))
+    (body
+      (text))
+    (foreach_end_tag))
+  (text))

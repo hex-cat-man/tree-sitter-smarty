@@ -42,6 +42,9 @@
   "for"
   "to"
   "forelse"
+  "foreach"
+  "as"
+  "foreachelse"
 ] @keyword
 
 (ternary_expression ["?" ":"] @operator)

@@ -125,6 +125,7 @@ module.exports = grammar({
     _builtin_block: $ => choice(
       $.if_block,
       $.for_block,
+      $.foreach_block,
     ),
 
     if_block: $ => seq(
@@ -174,6 +175,37 @@ module.exports = grammar({
       alias(repeat($._smarty), $.body),
     ),
     forelse_tag: _ => seq('{', 'forelse', '}'),
+
+    foreach_block: $ => seq(
+      $.foreach_start_tag,
+      alias(repeat($._smarty), $.body),
+      optional($._foreachelse_branch),
+      $.foreach_end_tag,
+    ),
+    foreach_start_tag: $ => prec(1, seq(
+      '{',
+      'foreach',
+      choice(
+        seq(
+          field('from', $.variable),
+          'as',
+          optional(seq(
+            field('key', $.variable),
+            '=>'
+          )),
+          field('item', $.variable),
+        ),
+        alias(repeat($.tag_function_attribute), $.tag_function_attributes),
+      ),
+      optional(field('step', $._expression)),
+      '}',
+    )),
+    foreach_end_tag: _ => seq('{/', 'foreach', '}'),
+    _foreachelse_branch: $ => seq(
+      $.foreachelse_tag,
+      alias(repeat($._smarty), $.body),
+    ),
+    foreachelse_tag: _ => seq('{', 'foreachelse', '}'),
 
     // Expressions
 
