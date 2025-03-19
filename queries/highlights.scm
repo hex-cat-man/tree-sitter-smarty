@@ -46,6 +46,8 @@
   "as"
   "foreachelse"
   "while"
+  "section"
+  "sectionelse"
 ] @keyword
 
 (ternary_expression ["?" ":"] @operator)

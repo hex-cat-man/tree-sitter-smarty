@@ -127,6 +127,7 @@ module.exports = grammar({
       $.for_block,
       $.foreach_block,
       $.while_block,
+      $.section_block,
     ),
 
     if_block: $ => seq(
@@ -207,6 +208,25 @@ module.exports = grammar({
       alias(repeat($._smarty), $.body),
     ),
     foreachelse_tag: _ => seq('{', 'foreachelse', '}'),
+
+    section_block: $ => seq(
+      $.section_start_tag,
+      alias(repeat($._smarty), $.body),
+      optional($._sectionelse_branch),
+      $.section_end_tag,
+    ),
+    section_start_tag: $ => prec(1, seq(
+      '{',
+      'section',
+      alias(repeat($.tag_function_attribute), $.tag_function_attributes),
+      '}',
+    )),
+    section_end_tag: _ => seq('{/', 'section', '}'),
+    _sectionelse_branch: $ => seq(
+      $.sectionelse_tag,
+      alias(repeat($._smarty), $.body),
+    ),
+    sectionelse_tag: _ => seq('{', 'sectionelse', '}'),
 
     while_block: $ => seq(
       $.while_start_tag,

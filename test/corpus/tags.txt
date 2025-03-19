@@ -221,6 +221,53 @@ Comments
   (text))
 
 ================================================================================
+{section},{sectionelse}
+================================================================================
+
+{section name='foo' loop=$baz}
+    {section name='bar' loop=$qux}
+        body
+    {sectionelse}
+        body
+    {/section}
+{/section}
+
+--------------------------------------------------------------------------------
+
+(template
+  (section_block
+    (section_start_tag
+      (tag_function_attributes
+        (tag_function_attribute
+          (identifier)
+          (string
+            (string_content)))
+        (tag_function_attribute
+          (identifier)
+          (variable
+            (identifier)))))
+    (body
+      (section_block
+        (section_start_tag
+          (tag_function_attributes
+            (tag_function_attribute
+              (identifier)
+              (string
+                (string_content)))
+            (tag_function_attribute
+              (identifier)
+              (variable
+                (identifier)))))
+        (body
+          (text))
+        (sectionelse_tag)
+        (body
+          (text))
+        (section_end_tag)))
+    (section_end_tag))
+  (text))
+
+================================================================================
 {while}
 ================================================================================
 
@@ -247,3 +294,4 @@ Comments
         (while_end_tag)))
     (while_end_tag))
   (text))
+
