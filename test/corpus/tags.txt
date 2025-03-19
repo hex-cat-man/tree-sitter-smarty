@@ -219,3 +219,31 @@ Comments
       (text))
     (foreach_end_tag))
   (text))
+
+================================================================================
+{while}
+================================================================================
+
+{while $foo}
+    {while $bar}
+        body
+    {/while}
+{/while}
+
+--------------------------------------------------------------------------------
+
+(template
+  (while_block
+    (while_start_tag
+      condition: (variable
+        (identifier)))
+    (body
+      (while_block
+        (while_start_tag
+          condition: (variable
+            (identifier)))
+        (body
+          (text))
+        (while_end_tag)))
+    (while_end_tag))
+  (text))

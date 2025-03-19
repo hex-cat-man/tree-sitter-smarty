@@ -126,6 +126,7 @@ module.exports = grammar({
       $.if_block,
       $.for_block,
       $.foreach_block,
+      $.while_block,
     ),
 
     if_block: $ => seq(
@@ -206,6 +207,19 @@ module.exports = grammar({
       alias(repeat($._smarty), $.body),
     ),
     foreachelse_tag: _ => seq('{', 'foreachelse', '}'),
+
+    while_block: $ => seq(
+      $.while_start_tag,
+      alias(repeat($._smarty), $.body),
+      $.while_end_tag,
+    ),
+    while_start_tag: $ => prec(1, seq(
+      '{',
+      'while',
+      field('condition', $._expression),
+      '}',
+    )),
+    while_end_tag: _ => seq('{/', 'while', '}'),
 
     // Expressions
 

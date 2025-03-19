@@ -290,6 +290,10 @@
         {
           "type": "SYMBOL",
           "name": "foreach_block"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "while_block"
         }
       ]
     },
@@ -831,6 +835,77 @@
         {
           "type": "STRING",
           "value": "foreachelse"
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "while_block": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "while_start_tag"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_smarty"
+            }
+          },
+          "named": true,
+          "value": "body"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "while_end_tag"
+        }
+      ]
+    },
+    "while_start_tag": {
+      "type": "PREC",
+      "value": 1,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "{"
+          },
+          {
+            "type": "STRING",
+            "value": "while"
+          },
+          {
+            "type": "FIELD",
+            "name": "condition",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_expression"
+            }
+          },
+          {
+            "type": "STRING",
+            "value": "}"
+          }
+        ]
+      }
+    },
+    "while_end_tag": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "{/"
+        },
+        {
+          "type": "STRING",
+          "value": "while"
         },
         {
           "type": "STRING",

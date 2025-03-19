@@ -809,6 +809,10 @@
         {
           "type": "text",
           "named": true
+        },
+        {
+          "type": "while_block",
+          "named": true
         }
       ]
     }
@@ -2233,6 +2237,10 @@
         {
           "type": "text",
           "named": true
+        },
+        {
+          "type": "while_block",
+          "named": true
         }
       ]
     }
@@ -2639,6 +2647,126 @@
     }
   },
   {
+    "type": "while_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "body",
+          "named": true
+        },
+        {
+          "type": "while_end_tag",
+          "named": true
+        },
+        {
+          "type": "while_start_tag",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "while_end_tag",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "while_start_tag",
+    "named": true,
+    "fields": {
+      "condition": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "array",
+            "named": true
+          },
+          {
+            "type": "array_access_expression",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "config_variable",
+            "named": true
+          },
+          {
+            "type": "function_call_expression",
+            "named": true
+          },
+          {
+            "type": "member_access_expression",
+            "named": true
+          },
+          {
+            "type": "member_call_expression",
+            "named": true
+          },
+          {
+            "type": "modifier_call_expression",
+            "named": true
+          },
+          {
+            "type": "null",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "section_access_expression",
+            "named": true
+          },
+          {
+            "type": "smarty_access_expression",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "tag",
+            "named": true
+          },
+          {
+            "type": "ternary_expression",
+            "named": true
+          },
+          {
+            "type": "unary_expression",
+            "named": true
+          },
+          {
+            "type": "variable",
+            "named": true
+          },
+          {
+            "type": "variable_property",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "!",
     "named": false
   },
@@ -2920,6 +3048,10 @@
   },
   {
     "type": "true",
+    "named": false
+  },
+  {
+    "type": "while",
     "named": false
   },
   {
