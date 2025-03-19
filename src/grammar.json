@@ -352,6 +352,50 @@
                 "members": [
                   {
                     "type": "STRING",
+                    "value": "++"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "--"
+                  }
+                ]
+              },
+              {
+                "type": "SYMBOL",
+                "name": "variable"
+              }
+            ]
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "variable"
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "++"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "--"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "STRING",
                     "value": "not"
                   },
                   {
@@ -468,11 +512,23 @@
               },
               {
                 "type": "STRING",
+                "value": "%"
+              },
+              {
+                "type": "STRING",
+                "value": "**"
+              },
+              {
+                "type": "STRING",
                 "value": "=="
               },
               {
                 "type": "STRING",
                 "value": "!="
+              },
+              {
+                "type": "STRING",
+                "value": "<>"
               },
               {
                 "type": "STRING",
@@ -496,7 +552,7 @@
               },
               {
                 "type": "STRING",
-                "value": "%"
+                "value": "!=="
               },
               {
                 "type": "STRING",
@@ -509,6 +565,10 @@
               {
                 "type": "STRING",
                 "value": "and"
+              },
+              {
+                "type": "STRING",
+                "value": "xor"
               },
               {
                 "type": "STRING",

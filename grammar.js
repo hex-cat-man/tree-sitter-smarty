@@ -131,6 +131,10 @@ module.exports = grammar({
     parenthesized_expression: $ => seq('(', $._expression, ')'),
 
     unary_expression: $ => prec.left(1, choice(
+      // FIXME: Disallow extras between nodes.
+      seq(choice('++', '--'), $.variable),
+      // FIXME: Disallow extras between nodes.
+      seq($.variable, choice('++', '--')),
       seq(
         choice('not', '!'),
         $._expression,
@@ -151,18 +155,24 @@ module.exports = grammar({
         '-',
         '*',
         '/',
+        '%',
+        '**',
+
         '==',
         '!=',
+        '<>',
         '>',
         '<',
         '>=',
         '<=',
         '===',
-        '%',
+        '!==',
+
         '??',
         '?:',
 
         'and',
+        'xor',
         'or',
         'eq',
         'ne',

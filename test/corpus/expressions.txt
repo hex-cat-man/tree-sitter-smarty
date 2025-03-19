@@ -3,6 +3,8 @@ Unary expressions
 ================================================================================
 
 {not true}
+{$foo++}
+{--$foo}
 
 --------------------------------------------------------------------------------
 
@@ -10,6 +12,14 @@ Unary expressions
   (tag
     (unary_expression
       (boolean)))
+  (tag
+    (unary_expression
+      (variable
+        (identifier))))
+  (tag
+    (unary_expression
+      (variable
+        (identifier))))
   (text))
 
 ================================================================================
