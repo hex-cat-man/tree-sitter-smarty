@@ -113,7 +113,10 @@ module.exports = grammar({
       seq(
         field('name', $.identifier),
         '=',
-        field('value', $._expression),
+        field('value', choice(
+          $._expression,
+          alias($.identifier, $.string),
+        )),
       ),
     ),
 
