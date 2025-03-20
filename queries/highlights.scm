@@ -1,8 +1,20 @@
-["{" "}" "{/"] @punctuation.bracket
+[
+  "{"
+  "}"
+  "{/"
+] @punctuation.bracket
 
-["[" "]" "(" ")"] @punctuation.bracket
+[
+  "["
+  "]"
+  "("
+  ")"
+] @punctuation.bracket
 
-["," ":"] @punctuation.delimiter
+[
+  ","
+  ":"
+] @punctuation.delimiter
 
 [
   "="
@@ -10,6 +22,7 @@
   "->"
   "."
   "|"
+  "!"
 
   "+"
   "-"
