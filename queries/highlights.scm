@@ -48,47 +48,46 @@
   "?:"
 ] @operator
 
+(ternary_expression ["?" ":"] @operator)
+
+[
+  "to"
+  "as"
+  "and"
+  "xor"
+  "or"
+  "by"
+  "div"
+  "eq"
+  "even"
+  "ge"
+  "gt"
+  "gte"
+  "in"
+  "is"
+  "le"
+  "lt"
+  "lte"
+  "mod"
+  "ne"
+  "neq"
+  "not"
+  "odd"
+] @keyword
+
 [
   "if"
   "else"
   "elseif"
   "for"
-  "to"
   "forelse"
   "foreach"
-  "as"
   "foreachelse"
   "while"
   "section"
   "sectionelse"
-] @keyword
-
-(ternary_expression ["?" ":"] @operator)
-
-[
- "and"
- "xor"
- "or"
- "by"
- "div"
- "eq"
- "even"
- "ge"
- "gt"
- "gte"
- "in"
- "is"
- "le"
- "lt"
- "lte"
- "mod"
- "ne"
- "neq"
- "not"
- "odd"
-] @keyword
-
-(tag_function_name) @tag
+  (tag_function_name)
+] @tag
 
 (comment) @comment
 
