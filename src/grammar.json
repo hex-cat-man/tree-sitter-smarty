@@ -726,7 +726,7 @@
                     "name": "from",
                     "content": {
                       "type": "SYMBOL",
-                      "name": "variable"
+                      "name": "_expression"
                     }
                   },
                   {

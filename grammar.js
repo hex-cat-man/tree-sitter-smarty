@@ -192,7 +192,7 @@ module.exports = grammar({
       'foreach',
       choice(
         seq(
-          field('from', $.variable),
+          field('from', $._expression),
           'as',
           optional(seq(
             field('key', $.variable),
