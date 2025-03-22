@@ -86,30 +86,32 @@ Builtin {if},{elseif},{else}
   (if_block
     (if_start_tag
       condition: (boolean))
-    (body
+    body: (body
       (if_block
         (if_start_tag
           condition: (boolean))
-        (body
+        body: (body
           (text))
         (if_end_tag)))
+    alternative: (elseif_block
       (elseif_tag
         condition: (boolean))
-    (body
-      (if_block
-        (if_start_tag
-          condition: (boolean))
-        (body
-          (text))
-        (if_end_tag)))
-    (else_tag)
-    (body
-      (if_block
-        (if_start_tag
-          condition: (boolean))
-        (body
-          (text))
-        (if_end_tag)))
+      body: (body
+        (if_block
+          (if_start_tag
+            condition: (boolean))
+          body: (body
+            (text))
+          (if_end_tag)))
+      alternative: (else_block
+        (else_tag)
+        body: (body
+          (if_block
+            (if_start_tag
+              condition: (boolean))
+            body: (body
+              (text))
+            (if_end_tag)))))
     (if_end_tag))
   (text))
 
@@ -135,7 +137,7 @@ Builtin {for},{forelse}
           (identifier))
         right: (number))
       end: (number))
-    (body
+    body: (body
       (for_block
         (for_start_tag
           start: (assignment_expression
@@ -150,11 +152,12 @@ Builtin {for},{forelse}
             (tag_function_attribute
               name: (identifier)
               value: (number))))
-        (body
+        body: (body
           (text))
-        (forelse_tag)
-        (body
-          (text))
+        alternative: (forelse_block
+          (forelse_tag)
+          body: (body
+            (text)))
         (for_end_tag)))
     (for_end_tag))
   (text))
@@ -186,7 +189,7 @@ Builtin {foreach},{foreachelse}
         (identifier))
       item: (variable
         (identifier)))
-    (body
+    body: (body
       (foreach_block
         (foreach_start_tag
           (tag_function_attributes
@@ -202,11 +205,12 @@ Builtin {foreach},{foreachelse}
               name: (identifier)
               value: (string
                 (string_content)))))
-        (body
+        body: (body
           (text))
-        (foreachelse_tag)
-        (body
-          (text))
+        alternative: (foreachelse_block
+          (foreachelse_tag)
+          body: (body
+            (text)))
         (foreach_end_tag)))
     (foreach_end_tag))
   (foreach_block
@@ -215,7 +219,7 @@ Builtin {foreach},{foreachelse}
         (identifier))
       item: (variable
         (identifier)))
-    (body
+    body: (body
       (text))
     (foreach_end_tag))
   (text))
@@ -234,7 +238,7 @@ Builtin {literal}
 (template
   (literal_block
     (literal_start_tag)
-    (body
+    body: (body
       (text))
     (literal_end_tag))
   (text))
@@ -258,30 +262,31 @@ Builtin {section},{sectionelse}
     (section_start_tag
       (tag_function_attributes
         (tag_function_attribute
-          (identifier)
-          (string
+          name: (identifier)
+          value: (string
             (string_content)))
         (tag_function_attribute
-          (identifier)
-          (variable
+          name: (identifier)
+          value: (variable
             (identifier)))))
-    (body
+    body: (body
       (section_block
         (section_start_tag
           (tag_function_attributes
             (tag_function_attribute
-              (identifier)
-              (string
+              name: (identifier)
+              value: (string
                 (string_content)))
             (tag_function_attribute
-              (identifier)
-              (variable
+              name: (identifier)
+              value: (variable
                 (identifier)))))
-        (body
+        body: (body
           (text))
-        (sectionelse_tag)
-        (body
-          (text))
+        alternative: (sectionelse_block
+          (sectionelse_tag)
+          body: (body
+            (text)))
         (section_end_tag)))
     (section_end_tag))
   (text))
@@ -303,12 +308,12 @@ Builtin {while}
     (while_start_tag
       condition: (variable
         (identifier)))
-    (body
+    body: (body
       (while_block
         (while_start_tag
           condition: (variable
             (identifier)))
-        (body
+        body: (body
           (text))
         (while_end_tag)))
     (while_end_tag))

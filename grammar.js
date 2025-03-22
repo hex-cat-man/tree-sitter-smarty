@@ -20,7 +20,6 @@ module.exports = grammar({
 
   conflicts: $ => [
     [$.tag, $.start_tag],
-    [$._elseif_branch],
     // TODO: Understand prec and get rid of those conflicts (if possible).
     [$._access_expression, $.section_access_expression],
     [$.modifier_call_expression, $.argument],
@@ -136,33 +135,37 @@ module.exports = grammar({
 
     if_block: $ => seq(
       $.if_start_tag,
-      alias(repeat($._smarty), $.body),
-      repeat($._elseif_branch),
-      optional($._else_branch),
+      field('body', alias(repeat($._smarty), $.body)),
+      field('alternative', optional($._if_alternative)),
       $.if_end_tag,
     ),
     if_start_tag: $ => seq('{', 'if', field('condition', $._expression), '}'),
     if_end_tag: _ => seq('{/', 'if', '}'),
-    _elseif_branch: $ => seq(
-      $.elseif_tag,
-      alias(repeat($._smarty), $.body),
+    _if_alternative: $ => choice(
+      $.elseif_block,
+      $.else_block,
     ),
+    elseif_block: $ => prec(3, seq(
+      $.elseif_tag,
+      field('body', alias(repeat($._smarty), $.body)),
+      field('alternative', optional($._if_alternative)),
+    )),
     elseif_tag: $ => seq(
       '{',
       choice('elseif', seq('else', 'if')),
       field('condition', $._expression),
       '}',
     ),
-    _else_branch: $ => seq(
+    else_block: $ => seq(
       $.else_tag,
-      alias(repeat($._smarty), $.body),
+      field('body', alias(repeat($._smarty), $.body)),
     ),
     else_tag: _ => seq('{', 'else', '}'),
 
     for_block: $ => seq(
       $.for_start_tag,
-      alias(repeat($._smarty), $.body),
-      optional($._forelse_branch),
+      field('body', alias(repeat($._smarty), $.body)),
+      field('alternative', optional($.forelse_block)),
       $.for_end_tag,
     ),
     for_start_tag: $ => prec(1, seq(
@@ -173,19 +176,19 @@ module.exports = grammar({
       field('end', $._expression),
       optional(field('step', $._expression)),
       alias(repeat($.tag_function_attribute), $.tag_function_attributes),
-      '}',
+      '}'
     )),
     for_end_tag: _ => seq('{/', 'for', '}'),
-    _forelse_branch: $ => seq(
+    forelse_block: $ => seq(
       $.forelse_tag,
-      alias(repeat($._smarty), $.body),
+      field('body', alias(repeat($._smarty), $.body)),
     ),
     forelse_tag: _ => seq('{', 'forelse', '}'),
 
     foreach_block: $ => seq(
       $.foreach_start_tag,
-      alias(repeat($._smarty), $.body),
-      optional($._foreachelse_branch),
+      field('body', alias(repeat($._smarty), $.body)),
+      field('alternative', optional($.foreachelse_block)),
       $.foreach_end_tag,
     ),
     foreach_start_tag: $ => prec(1, seq(
@@ -201,21 +204,21 @@ module.exports = grammar({
           )),
           field('item', $.variable),
         ),
+        // Old (deprecated?) smarty 2 notation.
         alias(repeat($.tag_function_attribute), $.tag_function_attributes),
       ),
-      optional(field('step', $._expression)),
       '}',
     )),
     foreach_end_tag: _ => seq('{/', 'foreach', '}'),
-    _foreachelse_branch: $ => seq(
-      $.foreachelse_tag,
-      alias(repeat($._smarty), $.body),
-    ),
     foreachelse_tag: _ => seq('{', 'foreachelse', '}'),
+    foreachelse_block: $ => seq(
+      $.foreachelse_tag,
+      field('body', alias(repeat($._smarty), $.body)),
+    ),
 
     literal_block: $ => seq(
       $.literal_start_tag,
-      alias(optional($.literal_body), $.body),
+      field('body', alias(optional($.literal_body), $.body)),
       $.literal_end_tag,
     ),
     literal_start_tag: _ => seq('{', 'literal', '}'),
@@ -240,8 +243,8 @@ module.exports = grammar({
 
     section_block: $ => seq(
       $.section_start_tag,
-      alias(repeat($._smarty), $.body),
-      optional($._sectionelse_branch),
+      field('body', alias(repeat($._smarty), $.body)),
+      field('alternative', optional($.sectionelse_block)),
       $.section_end_tag,
     ),
     section_start_tag: $ => prec(1, seq(
@@ -251,15 +254,15 @@ module.exports = grammar({
       '}',
     )),
     section_end_tag: _ => seq('{/', 'section', '}'),
-    _sectionelse_branch: $ => seq(
+    sectionelse_block: $ => seq(
       $.sectionelse_tag,
-      alias(repeat($._smarty), $.body),
+      field('body', alias(repeat($._smarty), $.body)),
     ),
     sectionelse_tag: _ => seq('{', 'sectionelse', '}'),
 
     while_block: $ => seq(
       $.while_start_tag,
-      alias(repeat($._smarty), $.body),
+      field('body', alias(repeat($._smarty), $.body)),
       $.while_end_tag,
     ),
     while_start_tag: $ => prec(1, seq(
@@ -500,3 +503,22 @@ module.exports = grammar({
     ),
   }
 });
+
+/**
+ * @param {RuleOrLiteral} name
+ * @param {RuleOrLiteral[]} rules
+ *
+ * @returns {SeqRule}
+ */
+function smartyBuiltinTag(name, ...rules) {
+  return seq('{', name, ...rules, '}')
+}
+
+/**
+ * @param {RuleOrLiteral} name
+ *
+ * @returns {SeqRule}
+ */
+function smartyBuiltinEndTag(name) {
+  return seq('{/', token.immediate(name), '}');
+}

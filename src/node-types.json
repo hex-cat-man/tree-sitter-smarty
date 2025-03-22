@@ -851,9 +851,75 @@
     }
   },
   {
+    "type": "else_block",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "body",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "else_tag",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "else_tag",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "elseif_block",
+    "named": true,
+    "fields": {
+      "alternative": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "else_block",
+            "named": true
+          },
+          {
+            "type": "elseif_block",
+            "named": true
+          }
+        ]
+      },
+      "body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "body",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "elseif_tag",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "elseif_tag",
@@ -965,25 +1031,38 @@
   {
     "type": "for_block",
     "named": true,
-    "fields": {},
+    "fields": {
+      "alternative": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "forelse_block",
+            "named": true
+          }
+        ]
+      },
+      "body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "body",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
       "types": [
-        {
-          "type": "body",
-          "named": true
-        },
         {
           "type": "for_end_tag",
           "named": true
         },
         {
           "type": "for_start_tag",
-          "named": true
-        },
-        {
-          "type": "forelse_tag",
           "named": true
         }
       ]
@@ -1195,25 +1274,38 @@
   {
     "type": "foreach_block",
     "named": true,
-    "fields": {},
+    "fields": {
+      "alternative": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "foreachelse_block",
+            "named": true
+          }
+        ]
+      },
+      "body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "body",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
       "types": [
-        {
-          "type": "body",
-          "named": true
-        },
         {
           "type": "foreach_end_tag",
           "named": true
         },
         {
           "type": "foreach_start_tag",
-          "named": true
-        },
-        {
-          "type": "foreachelse_tag",
           "named": true
         }
       ]
@@ -1333,92 +1425,6 @@
             "named": true
           }
         ]
-      },
-      "step": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "array",
-            "named": true
-          },
-          {
-            "type": "array_access_expression",
-            "named": true
-          },
-          {
-            "type": "binary_expression",
-            "named": true
-          },
-          {
-            "type": "boolean",
-            "named": true
-          },
-          {
-            "type": "config_variable",
-            "named": true
-          },
-          {
-            "type": "function_call_expression",
-            "named": true
-          },
-          {
-            "type": "member_access_expression",
-            "named": true
-          },
-          {
-            "type": "member_call_expression",
-            "named": true
-          },
-          {
-            "type": "modifier_call_expression",
-            "named": true
-          },
-          {
-            "type": "null",
-            "named": true
-          },
-          {
-            "type": "number",
-            "named": true
-          },
-          {
-            "type": "parenthesized_expression",
-            "named": true
-          },
-          {
-            "type": "section_access_expression",
-            "named": true
-          },
-          {
-            "type": "smarty_access_expression",
-            "named": true
-          },
-          {
-            "type": "string",
-            "named": true
-          },
-          {
-            "type": "tag",
-            "named": true
-          },
-          {
-            "type": "ternary_expression",
-            "named": true
-          },
-          {
-            "type": "unary_expression",
-            "named": true
-          },
-          {
-            "type": "variable",
-            "named": true
-          },
-          {
-            "type": "variable_property",
-            "named": true
-          }
-        ]
       }
     },
     "children": {
@@ -1433,9 +1439,61 @@
     }
   },
   {
+    "type": "foreachelse_block",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "body",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "foreachelse_tag",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "foreachelse_tag",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "forelse_block",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "body",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "forelse_tag",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "forelse_tag",
@@ -1471,23 +1529,36 @@
   {
     "type": "if_block",
     "named": true,
-    "fields": {},
+    "fields": {
+      "alternative": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "else_block",
+            "named": true
+          },
+          {
+            "type": "elseif_block",
+            "named": true
+          }
+        ]
+      },
+      "body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "body",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
       "types": [
-        {
-          "type": "body",
-          "named": true
-        },
-        {
-          "type": "else_tag",
-          "named": true
-        },
-        {
-          "type": "elseif_tag",
-          "named": true
-        },
         {
           "type": "if_end_tag",
           "named": true
@@ -1599,15 +1670,22 @@
   {
     "type": "literal_block",
     "named": true,
-    "fields": {},
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "body",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
       "types": [
-        {
-          "type": "body",
-          "named": true
-        },
         {
           "type": "literal_end_tag",
           "named": true
@@ -1988,25 +2066,38 @@
   {
     "type": "section_block",
     "named": true,
-    "fields": {},
+    "fields": {
+      "alternative": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "sectionelse_block",
+            "named": true
+          }
+        ]
+      },
+      "body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "body",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
       "types": [
-        {
-          "type": "body",
-          "named": true
-        },
         {
           "type": "section_end_tag",
           "named": true
         },
         {
           "type": "section_start_tag",
-          "named": true
-        },
-        {
-          "type": "sectionelse_tag",
           "named": true
         }
       ]
@@ -2027,6 +2118,32 @@
       "types": [
         {
           "type": "tag_function_attributes",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "sectionelse_block",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "body",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "sectionelse_tag",
           "named": true
         }
       ]
@@ -2826,15 +2943,22 @@
   {
     "type": "while_block",
     "named": true,
-    "fields": {},
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "body",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
       "types": [
-        {
-          "type": "body",
-          "named": true
-        },
         {
           "type": "while_end_tag",
           "named": true
