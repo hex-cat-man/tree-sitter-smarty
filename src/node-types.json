@@ -803,6 +803,10 @@
           "named": true
         },
         {
+          "type": "literal_block",
+          "named": true
+        },
+        {
           "type": "section_block",
           "named": true
         },
@@ -1593,6 +1597,39 @@
     }
   },
   {
+    "type": "literal_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "body",
+          "named": true
+        },
+        {
+          "type": "literal_end_tag",
+          "named": true
+        },
+        {
+          "type": "literal_start_tag",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "literal_end_tag",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "literal_start_tag",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "member_access_expression",
     "named": true,
     "fields": {
@@ -2360,6 +2397,10 @@
         },
         {
           "type": "if_block",
+          "named": true
+        },
+        {
+          "type": "literal_block",
           "named": true
         },
         {
@@ -3136,6 +3177,10 @@
   },
   {
     "type": "le",
+    "named": false
+  },
+  {
+    "type": "literal",
     "named": false
   },
   {

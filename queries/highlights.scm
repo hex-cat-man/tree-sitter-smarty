@@ -48,7 +48,8 @@
   "?:"
 ] @operator
 
-(ternary_expression ["?" ":"] @operator)
+(ternary_expression
+  ["?" ":"] @operator)
 
 [
   "to"
@@ -83,9 +84,10 @@
   "forelse"
   "foreach"
   "foreachelse"
-  "while"
+  "literal"
   "section"
   "sectionelse"
+  "while"
   (tag_function_name)
 ] @tag
 

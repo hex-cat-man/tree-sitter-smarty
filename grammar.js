@@ -52,7 +52,7 @@ module.exports = grammar({
 
     // TODO: I would like to match the '{' and '*' as separate tokens to be able
     //       to highlight them differently (like in the smarty documentation).
-    //       But we cannot use token.immidiate (I think?), since comments
+    //       But we cannot use token.immediate (I think?), since comments
     //       themselfs are extras.
     comment: _ => seq(
       '{*',
@@ -129,8 +129,9 @@ module.exports = grammar({
       $.if_block,
       $.for_block,
       $.foreach_block,
-      $.while_block,
+      $.literal_block,
       $.section_block,
+      $.while_block,
     ),
 
     if_block: $ => seq(
@@ -211,6 +212,31 @@ module.exports = grammar({
       alias(repeat($._smarty), $.body),
     ),
     foreachelse_tag: _ => seq('{', 'foreachelse', '}'),
+
+    literal_block: $ => seq(
+      $.literal_start_tag,
+      alias(optional($.literal_body), $.body),
+      $.literal_end_tag,
+    ),
+    literal_start_tag: _ => seq('{', 'literal', '}'),
+    literal_end_tag: _ => seq('{/', 'literal', '}'),
+    literal_body: $ => alias(
+      repeat1(choice(
+        /[^\{]+/,
+        // This seems excessive, but without a scanner this is the best I can to
+        // right now? I guess this is fine.
+        token.immediate(/\{[^/]/),
+        token.immediate(/\{\/[^l]/),
+        token.immediate(/\{\/l[^i]/),
+        token.immediate(/\{\/li[^t]/),
+        token.immediate(/\{\/lit[^e]/),
+        token.immediate(/\{\/lite[^r]/),
+        token.immediate(/\{\/liter[^a]/),
+        token.immediate(/\{\/litera[^l]/),
+        token.immediate(/\{\/literal[^\}]/),
+      )),
+      $.text,
+    ),
 
     section_block: $ => seq(
       $.section_start_tag,
