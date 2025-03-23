@@ -2,13 +2,6 @@
 
 A [Smarty] grammar for [Tree-sitter].
 
-## Development
-
-This parser is currently used to explore the usage and capabilities of
-[Tree-sitter]. It is very limited and not meant for use. I hope to expand it
-into something useful eventually, but you know how it is with personal projects
-;)
-
 ## Other projects
 
 - [Kibadda/tree-sitter-smarty]
