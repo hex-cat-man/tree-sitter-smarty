@@ -113,3 +113,132 @@ Tag expressions
           (tag_function_name)))
       right: (number)))
   (text))
+
+================================================================================
+String interpolation
+================================================================================
+
+{"test $foo test"}
+{"test $foo_bar test"}
+{"test `$foo[0]` test"}
+{"test `$foo[bar]` test"}
+{"test $foo.bar test"}
+{"test `$foo.bar` test"}
+{"test `$foo->bar` test"}
+{"test {$foo|escape} test"}
+{"test {time()} test"}
+{"test {counter} test"}
+{"variable foo is {if !$foo and "yes this works too"}not {/if} defined"}
+{"test \{counter} test"}
+{"test ``` $foo.bar` test"}
+
+--------------------------------------------------------------------------------
+
+(template
+  (tag
+    (string
+      (string_content)
+      (variable
+        (identifier))
+      (string_content)))
+  (tag
+    (string
+      (string_content)
+      (variable
+        (identifier))
+      (string_content)))
+  (tag
+    (string
+      (string_content)
+      (array_access_expression
+        (variable
+          (identifier))
+        (number))
+      (string_content)))
+  (tag
+    (string
+      (string_content)
+      (section_access_expression
+        (variable
+          (identifier))
+        (identifier))
+      (string_content)))
+  (tag
+    (string
+      (string_content)
+      (variable
+        (identifier))
+      (string_content)))
+  (tag
+    (string
+      (string_content)
+      (smarty_access_expression
+        (variable
+          (identifier))
+        (identifier))
+      (string_content)))
+  (tag
+    (string
+      (string_content)
+      (member_access_expression
+        (variable
+          (identifier))
+        (identifier))
+      (string_content)))
+  (tag
+    (string
+      (string_content)
+      (tag
+        (modifier_call_expression
+          (variable
+            (identifier))
+          (identifier)))
+      (string_content)))
+  (tag
+    (string
+      (string_content)
+      (tag
+        (function_call_expression
+          (identifier)
+          (arguments)))
+      (string_content)))
+  (tag
+    (string
+      (string_content)
+      (tag
+        (tag_function
+          (tag_function_name)))
+      (string_content)))
+  (tag
+    (string
+      (string_content)
+      (if_block
+        (if_start_tag
+          (binary_expression
+            (unary_expression
+              (variable
+                (identifier)))
+            (string
+              (string_content))))
+        (body
+          (text))
+        (if_end_tag))
+      (string_content)))
+  (tag
+    (string
+      (string_content)))
+  (tag
+    ; See FIXME comment in grammar.js regarding the
+    ; (string_standalone_backtick).
+    (string
+      (string_content)
+      (string_standalone_backtick)
+      (string_standalone_backtick)
+      (string_standalone_backtick)
+      (string_content)
+      (variable
+        (identifier))
+      (string_content)
+      (string_standalone_backtick)
+      (string_content)))
+  (text))

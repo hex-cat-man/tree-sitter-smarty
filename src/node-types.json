@@ -2236,11 +2236,79 @@
       "required": false,
       "types": [
         {
+          "type": "array_access_expression",
+          "named": true
+        },
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "config_variable",
+          "named": true
+        },
+        {
           "type": "escape_sequence",
           "named": true
         },
         {
+          "type": "for_block",
+          "named": true
+        },
+        {
+          "type": "foreach_block",
+          "named": true
+        },
+        {
+          "type": "if_block",
+          "named": true
+        },
+        {
+          "type": "literal_block",
+          "named": true
+        },
+        {
+          "type": "member_access_expression",
+          "named": true
+        },
+        {
+          "type": "member_call_expression",
+          "named": true
+        },
+        {
+          "type": "section_access_expression",
+          "named": true
+        },
+        {
+          "type": "section_block",
+          "named": true
+        },
+        {
+          "type": "smarty_access_expression",
+          "named": true
+        },
+        {
           "type": "string_content",
+          "named": true
+        },
+        {
+          "type": "string_standalone_backtick",
+          "named": true
+        },
+        {
+          "type": "tag",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        },
+        {
+          "type": "variable_property",
+          "named": true
+        },
+        {
+          "type": "while_block",
           "named": true
         }
       ]
@@ -3216,6 +3284,10 @@
     "named": false
   },
   {
+    "type": "`",
+    "named": false
+  },
+  {
     "type": "and",
     "named": false
   },
@@ -3350,6 +3422,10 @@
   {
     "type": "sectionelse",
     "named": false
+  },
+  {
+    "type": "string_standalone_backtick",
+    "named": true
   },
   {
     "type": "tag_function_name",

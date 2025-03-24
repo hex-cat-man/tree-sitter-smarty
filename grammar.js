@@ -459,7 +459,6 @@ module.exports = grammar({
       /\.\d+/,
     ),
 
-    // TODO: String interpolation.
     string: $ => choice(
       seq(
         '\'',
@@ -476,13 +475,29 @@ module.exports = grammar({
         '"',
         repeat(choice(
           alias(REGEX_ESC, $.escape_sequence),
-          alias(
-            prec.right(repeat1(token.immediate(prec(1, /[^"\\]+/)))),
-            $.string_content,
-          ),
+          alias($._double_quoted_string_content, $.string_content),
+          $.tag,
+          $.block,
+          $._builtin_block,
+          $.variable,
+          $._double_quoted_string_backtick_expression,
+          // FIXME: Ideally this should be part of the previous and/or following
+          //        string_content.
+          prec.right(alias('`', $.string_standalone_backtick)),
         )),
         '"',
       ),
+    ),
+
+    _double_quoted_string_backtick_expression: $ => prec.right(
+      seq('`', $._access_expression, token.immediate('`')),
+    ),
+
+    _double_quoted_string_content: $ => prec.right(
+      // The '`' and '{' characters are not really escaped by doing this
+      // (result in literal "\`", "\{"), but they are no longer recognized
+      // as start of a tag or an access expression region.
+      token.immediate(prec(1, /([^"\\$\{`]|\\\{|\\`)+/)),
     ),
 
     array: $ => seq(
