@@ -518,22 +518,3 @@ module.exports = grammar({
     ),
   }
 });
-
-/**
- * @param {RuleOrLiteral} name
- * @param {RuleOrLiteral[]} rules
- *
- * @returns {SeqRule}
- */
-function smartyBuiltinTag(name, ...rules) {
-  return seq('{', name, ...rules, '}')
-}
-
-/**
- * @param {RuleOrLiteral} name
- *
- * @returns {SeqRule}
- */
-function smartyBuiltinEndTag(name) {
-  return seq('{/', token.immediate(name), '}');
-}
