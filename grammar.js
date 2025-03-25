@@ -395,12 +395,16 @@ module.exports = grammar({
       $.variable,
       $.config_variable,
       $.variable_property,
-      $.member_access_expression,
-      // Note that only methods can be called, nothing else.
-      $.member_call_expression,
       $.smarty_access_expression,
       $.section_access_expression,
       $.array_access_expression,
+
+      $.member_access_expression,
+      $.member_call_expression,
+
+      $.class_constant_access_expression,
+      $.scoped_property_access_expression,
+      $.scoped_call_expression,
     ),
 
     variable: $ => seq('$', $.identifier),
@@ -436,6 +440,22 @@ module.exports = grammar({
       $._expression,
       ']',
     )),
+    class_constant_access_expression: $ => prec.right(seq(
+      field('scope', $._access_expression),
+      '::',
+      field('name', $.identifier),
+    )),
+    scoped_property_access_expression: $ => seq(
+      field('scope', $._access_expression),
+      '::',
+      field('name', $.variable),
+    ),
+    scoped_call_expression: $ => seq(
+      field('scope', $._access_expression),
+      '::',
+      field('name', $.identifier),
+      field('arguments', alias($.parenthesized_arguments, $.arguments)),
+    ),
 
     // Literals
 

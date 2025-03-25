@@ -21,6 +21,7 @@
   "="
   "=>"
   "->"
+  "::"
   "."
   "|"
   "!"
@@ -129,6 +130,14 @@
   name: (identifier) @function)
 (function_call_expression
   name: (identifier) @function)
+
+(scoped_property_access_expression
+  name: (variable
+    (identifier) @property))
+(scoped_call_expression
+  name: (identifier) @function)
+(class_constant_access_expression
+  name: (identifier) @constant)
 
 (null) @type.builtin
 (boolean) @boolean
