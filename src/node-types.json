@@ -24,6 +24,10 @@
           "named": true
         },
         {
+          "type": "class_constant_access_expression",
+          "named": true
+        },
+        {
           "type": "config_variable",
           "named": true
         },
@@ -53,6 +57,14 @@
         },
         {
           "type": "parenthesized_expression",
+          "named": true
+        },
+        {
+          "type": "scoped_call_expression",
+          "named": true
+        },
+        {
+          "type": "scoped_property_access_expression",
           "named": true
         },
         {
@@ -145,6 +157,10 @@
           "named": true
         },
         {
+          "type": "class_constant_access_expression",
+          "named": true
+        },
+        {
           "type": "config_variable",
           "named": true
         },
@@ -174,6 +190,14 @@
         },
         {
           "type": "parenthesized_expression",
+          "named": true
+        },
+        {
+          "type": "scoped_call_expression",
+          "named": true
+        },
+        {
+          "type": "scoped_property_access_expression",
           "named": true
         },
         {
@@ -236,6 +260,10 @@
             "named": true
           },
           {
+            "type": "class_constant_access_expression",
+            "named": true
+          },
+          {
             "type": "config_variable",
             "named": true
           },
@@ -265,6 +293,14 @@
           },
           {
             "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_call_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_property_access_expression",
             "named": true
           },
           {
@@ -322,6 +358,10 @@
             "named": true
           },
           {
+            "type": "class_constant_access_expression",
+            "named": true
+          },
+          {
             "type": "config_variable",
             "named": true
           },
@@ -351,6 +391,14 @@
           },
           {
             "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_call_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_property_access_expression",
             "named": true
           },
           {
@@ -409,6 +457,10 @@
           "named": true
         },
         {
+          "type": "class_constant_access_expression",
+          "named": true
+        },
+        {
           "type": "config_variable",
           "named": true
         },
@@ -438,6 +490,14 @@
         },
         {
           "type": "parenthesized_expression",
+          "named": true
+        },
+        {
+          "type": "scoped_call_expression",
+          "named": true
+        },
+        {
+          "type": "scoped_property_access_expression",
           "named": true
         },
         {
@@ -510,6 +570,10 @@
             "named": true
           },
           {
+            "type": "class_constant_access_expression",
+            "named": true
+          },
+          {
             "type": "config_variable",
             "named": true
           },
@@ -539,6 +603,14 @@
           },
           {
             "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_call_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_property_access_expression",
             "named": true
           },
           {
@@ -602,6 +674,10 @@
             "named": true
           },
           {
+            "type": "class_constant_access_expression",
+            "named": true
+          },
+          {
             "type": "config_variable",
             "named": true
           },
@@ -631,6 +707,14 @@
           },
           {
             "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_call_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_property_access_expression",
             "named": true
           },
           {
@@ -688,6 +772,10 @@
             "named": true
           },
           {
+            "type": "class_constant_access_expression",
+            "named": true
+          },
+          {
             "type": "config_variable",
             "named": true
           },
@@ -717,6 +805,14 @@
           },
           {
             "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_call_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_property_access_expression",
             "named": true
           },
           {
@@ -829,6 +925,72 @@
     "type": "boolean",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "class_constant_access_expression",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "scope": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "array_access_expression",
+            "named": true
+          },
+          {
+            "type": "class_constant_access_expression",
+            "named": true
+          },
+          {
+            "type": "config_variable",
+            "named": true
+          },
+          {
+            "type": "member_access_expression",
+            "named": true
+          },
+          {
+            "type": "member_call_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_call_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_property_access_expression",
+            "named": true
+          },
+          {
+            "type": "section_access_expression",
+            "named": true
+          },
+          {
+            "type": "smarty_access_expression",
+            "named": true
+          },
+          {
+            "type": "variable",
+            "named": true
+          },
+          {
+            "type": "variable_property",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
     "type": "comment",
@@ -946,6 +1108,10 @@
             "named": true
           },
           {
+            "type": "class_constant_access_expression",
+            "named": true
+          },
+          {
             "type": "config_variable",
             "named": true
           },
@@ -975,6 +1141,14 @@
           },
           {
             "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_call_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_property_access_expression",
             "named": true
           },
           {
@@ -1098,6 +1272,10 @@
             "named": true
           },
           {
+            "type": "class_constant_access_expression",
+            "named": true
+          },
+          {
             "type": "config_variable",
             "named": true
           },
@@ -1127,6 +1305,14 @@
           },
           {
             "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_call_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_property_access_expression",
             "named": true
           },
           {
@@ -1194,6 +1380,10 @@
             "named": true
           },
           {
+            "type": "class_constant_access_expression",
+            "named": true
+          },
+          {
             "type": "config_variable",
             "named": true
           },
@@ -1223,6 +1413,14 @@
           },
           {
             "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_call_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_property_access_expression",
             "named": true
           },
           {
@@ -1341,6 +1539,10 @@
             "named": true
           },
           {
+            "type": "class_constant_access_expression",
+            "named": true
+          },
+          {
             "type": "config_variable",
             "named": true
           },
@@ -1370,6 +1572,14 @@
           },
           {
             "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_call_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_property_access_expression",
             "named": true
           },
           {
@@ -1600,6 +1810,10 @@
             "named": true
           },
           {
+            "type": "class_constant_access_expression",
+            "named": true
+          },
+          {
             "type": "config_variable",
             "named": true
           },
@@ -1629,6 +1843,14 @@
           },
           {
             "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_call_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_property_access_expression",
             "named": true
           },
           {
@@ -1734,6 +1956,10 @@
             "named": true
           },
           {
+            "type": "class_constant_access_expression",
+            "named": true
+          },
+          {
             "type": "config_variable",
             "named": true
           },
@@ -1743,6 +1969,14 @@
           },
           {
             "type": "member_call_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_call_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_property_access_expression",
             "named": true
           },
           {
@@ -1798,6 +2032,10 @@
             "named": true
           },
           {
+            "type": "class_constant_access_expression",
+            "named": true
+          },
+          {
             "type": "config_variable",
             "named": true
           },
@@ -1807,6 +2045,14 @@
           },
           {
             "type": "member_call_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_call_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_property_access_expression",
             "named": true
           },
           {
@@ -1864,6 +2110,10 @@
             "named": true
           },
           {
+            "type": "class_constant_access_expression",
+            "named": true
+          },
+          {
             "type": "config_variable",
             "named": true
           },
@@ -1893,6 +2143,14 @@
           },
           {
             "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_call_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_property_access_expression",
             "named": true
           },
           {
@@ -1971,6 +2229,10 @@
           "named": true
         },
         {
+          "type": "class_constant_access_expression",
+          "named": true
+        },
+        {
           "type": "config_variable",
           "named": true
         },
@@ -2000,6 +2262,14 @@
         },
         {
           "type": "parenthesized_expression",
+          "named": true
+        },
+        {
+          "type": "scoped_call_expression",
+          "named": true
+        },
+        {
+          "type": "scoped_property_access_expression",
           "named": true
         },
         {
@@ -2035,6 +2305,148 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "scoped_call_expression",
+    "named": true,
+    "fields": {
+      "arguments": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "arguments",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "scope": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "array_access_expression",
+            "named": true
+          },
+          {
+            "type": "class_constant_access_expression",
+            "named": true
+          },
+          {
+            "type": "config_variable",
+            "named": true
+          },
+          {
+            "type": "member_access_expression",
+            "named": true
+          },
+          {
+            "type": "member_call_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_call_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_property_access_expression",
+            "named": true
+          },
+          {
+            "type": "section_access_expression",
+            "named": true
+          },
+          {
+            "type": "smarty_access_expression",
+            "named": true
+          },
+          {
+            "type": "variable",
+            "named": true
+          },
+          {
+            "type": "variable_property",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "scoped_property_access_expression",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "variable",
+            "named": true
+          }
+        ]
+      },
+      "scope": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "array_access_expression",
+            "named": true
+          },
+          {
+            "type": "class_constant_access_expression",
+            "named": true
+          },
+          {
+            "type": "config_variable",
+            "named": true
+          },
+          {
+            "type": "member_access_expression",
+            "named": true
+          },
+          {
+            "type": "member_call_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_call_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_property_access_expression",
+            "named": true
+          },
+          {
+            "type": "section_access_expression",
+            "named": true
+          },
+          {
+            "type": "smarty_access_expression",
+            "named": true
+          },
+          {
+            "type": "variable",
+            "named": true
+          },
+          {
+            "type": "variable_property",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -2167,6 +2579,10 @@
             "named": true
           },
           {
+            "type": "class_constant_access_expression",
+            "named": true
+          },
+          {
             "type": "config_variable",
             "named": true
           },
@@ -2176,6 +2592,14 @@
           },
           {
             "type": "member_call_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_call_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_property_access_expression",
             "named": true
           },
           {
@@ -2244,6 +2668,10 @@
           "named": true
         },
         {
+          "type": "class_constant_access_expression",
+          "named": true
+        },
+        {
           "type": "config_variable",
           "named": true
         },
@@ -2273,6 +2701,14 @@
         },
         {
           "type": "member_call_expression",
+          "named": true
+        },
+        {
+          "type": "scoped_call_expression",
+          "named": true
+        },
+        {
+          "type": "scoped_property_access_expression",
           "named": true
         },
         {
@@ -2348,6 +2784,10 @@
           "named": true
         },
         {
+          "type": "class_constant_access_expression",
+          "named": true
+        },
+        {
           "type": "config_variable",
           "named": true
         },
@@ -2377,6 +2817,14 @@
         },
         {
           "type": "parenthesized_expression",
+          "named": true
+        },
+        {
+          "type": "scoped_call_expression",
+          "named": true
+        },
+        {
+          "type": "scoped_property_access_expression",
           "named": true
         },
         {
@@ -2472,6 +2920,10 @@
             "named": true
           },
           {
+            "type": "class_constant_access_expression",
+            "named": true
+          },
+          {
             "type": "config_variable",
             "named": true
           },
@@ -2501,6 +2953,14 @@
           },
           {
             "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_call_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_property_access_expression",
             "named": true
           },
           {
@@ -2632,6 +3092,10 @@
             "named": true
           },
           {
+            "type": "class_constant_access_expression",
+            "named": true
+          },
+          {
             "type": "config_variable",
             "named": true
           },
@@ -2661,6 +3125,14 @@
           },
           {
             "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_call_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_property_access_expression",
             "named": true
           },
           {
@@ -2718,6 +3190,10 @@
             "named": true
           },
           {
+            "type": "class_constant_access_expression",
+            "named": true
+          },
+          {
             "type": "config_variable",
             "named": true
           },
@@ -2747,6 +3223,14 @@
           },
           {
             "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_call_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_property_access_expression",
             "named": true
           },
           {
@@ -2804,6 +3288,10 @@
             "named": true
           },
           {
+            "type": "class_constant_access_expression",
+            "named": true
+          },
+          {
             "type": "config_variable",
             "named": true
           },
@@ -2833,6 +3321,14 @@
           },
           {
             "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_call_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_property_access_expression",
             "named": true
           },
           {
@@ -2901,6 +3397,10 @@
           "named": true
         },
         {
+          "type": "class_constant_access_expression",
+          "named": true
+        },
+        {
           "type": "config_variable",
           "named": true
         },
@@ -2930,6 +3430,14 @@
         },
         {
           "type": "parenthesized_expression",
+          "named": true
+        },
+        {
+          "type": "scoped_call_expression",
+          "named": true
+        },
+        {
+          "type": "scoped_property_access_expression",
           "named": true
         },
         {
@@ -3068,6 +3576,10 @@
             "named": true
           },
           {
+            "type": "class_constant_access_expression",
+            "named": true
+          },
+          {
             "type": "config_variable",
             "named": true
           },
@@ -3097,6 +3609,14 @@
           },
           {
             "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_call_expression",
+            "named": true
+          },
+          {
+            "type": "scoped_property_access_expression",
             "named": true
           },
           {
@@ -3221,6 +3741,10 @@
   },
   {
     "type": ":",
+    "named": false
+  },
+  {
+    "type": "::",
     "named": false
   },
   {
